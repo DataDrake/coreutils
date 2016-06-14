@@ -1,3 +1,6 @@
+.idea/*
+CMakeCache.txt
+CMakeFiles/*
 # Object files
 *.o
 *.ko
