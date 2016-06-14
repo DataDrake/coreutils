@@ -33,14 +33,19 @@ void version() {
 
 int main(int argc, char **argv){
 
-    if(argc == 2) {
-        if(strcmp(argv[1], "--help") == 0) {
+    switch(argc) {
+        case 2:
+            if(strcmp(argv[1], "--help") == 0) {
+                usage();
+            } else if(strcmp(argv[1], "--version") == 0) {
+                version();
+            }
+            return EXIT_SUCCESS;
+        case 1:
+            sync();
+            return EXIT_SUCCESS;
+        default:
             usage();
-        } else if(strcmp(argv[1], "--version") == 0) {
-            version();
-        }
-    } else {
-        sync();
+            return EXIT_FAILURE;
     }
-    return EXIT_SUCCESS;
 }

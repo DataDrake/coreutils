@@ -35,19 +35,24 @@ int main(int argc, char **argv){
 
     char *user;
 
-    if(argc == 2) {
-        if(strcmp(argv[1], "--help") == 0) {
+    switch(argc) {
+        case 2:
+            if(strcmp(argv[1], "--help") == 0) {
+                usage();
+            } else if(strcmp(argv[1], "--version") == 0) {
+                version();
+            }
+            return EXIT_SUCCESS;
+        case 1:
+            user = getlogin();
+            if(user == NULL) {
+                fputs("Could not retrieve currently logged in user.",stderr);
+                return EXIT_FAILURE;
+            }
+            puts(user);
+            return EXIT_SUCCESS;
+        default:
             usage();
-        } else if(strcmp(argv[1], "--version") == 0) {
-            version();
-        }
-    } else {
-        user = getlogin();
-        if(user == NULL) {
-            fputs("Could not retrieve currently logged in user.",stderr);
             return EXIT_FAILURE;
-        }
-        puts(user);
     }
-    return EXIT_SUCCESS;
 }
