@@ -11,15 +11,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "coreutils.h"
-
-void version() {
-    printf("yes (coreutils) v%s\n",COREUTILS_VERSION);
-    puts("(C) 2016 Bryan T. Meyers\n");
-    puts("License GPLv2: GNU GPL version 2 <http://gnu.org/licenses/gpl.html>.");
-    puts("This is free software: you are free to change and redistribute it.");
-    puts("There is NO WARRANTY, to the extent permitted by law.\n");
-}
 
 void usage() {
     puts("Usage:\tyes [OPTION]");
@@ -30,18 +23,26 @@ void usage() {
     puts("\t\t--version\t- displays the software version\n");
 }
 
+void version() {
+    printf("yes (coreutils) v%s\n",COREUTILS_VERSION);
+    puts("(C) 2016 Bryan T. Meyers\n");
+    puts("License GPLv2: GNU GPL version 2 <http://gnu.org/licenses/gpl.html>.");
+    puts("This is free software: you are free to change and redistribute it.");
+    puts("There is NO WARRANTY, to the extent permitted by law.\n");
+}
+
 int main(int argc, char **argv){
 
-    char * phrase;
+    char *phrase;
 
     switch(argc) {
         case 2:
-            if(strcmp(argv[1],"--version") == 0) {
-                version();
-                return 0;
-            } else if (strcmp(argv[1],"--help") == 0) {
+            if(strcmp(argv[1], "--help") == 0) {
                 usage();
-                return 0;
+                return EXIT_SUCCESS;
+            } else if(strcmp(argv[1], "--version") == 0) {
+                version();
+                return EXIT_SUCCESS;
             }
             phrase = argv[1];
             break;
@@ -50,7 +51,7 @@ int main(int argc, char **argv){
             break;
         default:
             usage();
-            return 1;
+            return EXIT_FAILURE;
     }
     while(1) {
        puts(phrase);
