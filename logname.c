@@ -1,7 +1,7 @@
 /*
  * This file is part of coreutils.
  *
- * Copyright © 2016 Bryan T. Meyers
+ * Copyright 2017 Bryan T. Meyers
  *
  * coreutils is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,7 +25,7 @@ void usage() {
 
 void version() {
     printf("logname (coreutils) v%s\n",COREUTILS_VERSION);
-    puts("(C) 2016 Bryan T. Meyers\n");
+    puts("2017 Bryan T. Meyers\n");
     puts("License GPLv2: GNU GPL version 2 <http://gnu.org/licenses/gpl.html>.");
     puts("This is free software: you are free to change and redistribute it.");
     puts("There is NO WARRANTY, to the extent permitted by law.\n");
